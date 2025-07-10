@@ -25,7 +25,8 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 # define PI 3.14159265359
-# define SIZE 50
+# define SIZE 30
+# define POV PI/3
 
 typedef struct s_cube
 {
@@ -44,25 +45,30 @@ typedef struct s_cube
 	char	start;
 	int		minimap_width;
 	int		minimap_height;
-	int		x;
-	int		y;
+	float		x;
+	float		y;
+	float	new_x;
+	float	new_y;
 	int		speed;
-	double	dir_y;
-	double	dir_x;
-	double	angle;
+	float	ray_y;
+	float	ray_x;
+	float	angle;
 	int		key_a;
 	int		key_w;
 	int		key_s;
 	int		key_d;
+	int		key_left;
+	int		key_right;
 }			t_cube;
 
 void put_pixel(int x, int y, int color, t_cube *cubed);
 void draw_square(int x, int y, int color, t_cube *cubed);
 void draw_map(t_cube *cubed);
+void draw_line_on_map(float x0, float y0, float x1, float y1, t_cube *cubed);
 void put_circle(int xc, int yc, int r, int color, t_cube *cubed);
 void clear_image(t_cube *cubed);
 int	close_handler(t_cube *cubed);
-int is_wall(int x, int y);
+//int is_wall(int x, int y);
 int	key_release(int keysym, t_cube *cubed);
 int	key_handler(int keysym, t_cube *cubed);
 int	key_press(int keysym, t_cube *cubed);

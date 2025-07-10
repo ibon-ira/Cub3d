@@ -25,6 +25,24 @@ void put_pixel(int x, int y, int color, t_cube *cubed)
 	cubed->pixel_ptr[index + 2] = (color >> 16) & 0xFF;
 }
 
+void draw_line_on_map(float x0, float y0, float x1, float y1, t_cube *cubed)
+{
+    float dx = x1 - x0;
+    float dy = y1 - y0;
+    float steps = fmax(fabs(dx), fabs(dy));
+    float x_inc = dx / steps;
+    float y_inc = dy / steps;
+    float x = x0;
+    float y = y0;
+
+    for (int i = 0; i <= steps; i++)
+    {
+        put_pixel(x, y, 0xC37777, cubed); // Rojo para los rayos 0xFF0000
+        x += x_inc;
+        y += y_inc;
+    }
+}
+
 /*void draw_square(int x, int y, int size, int color, t_cube *cubed)
 {
     for (int j = 0; j < size; j++)

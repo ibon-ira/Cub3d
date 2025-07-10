@@ -44,6 +44,10 @@ int	key_press(int keysym, t_cube *cubed)
 		cubed->key_w = 1;
 	else if (keysym == XK_s)
 		cubed->key_s = 1;
+	else if (keysym == XK_Left)
+		cubed->key_left = 1;
+	else if (keysym == XK_Right)
+		cubed->key_right = 1;
 	return (0);
 }
 
@@ -57,6 +61,10 @@ int	key_release(int keysym, t_cube *cubed)
 		cubed->key_w = 0;
 	else if (keysym == XK_s)
 		cubed->key_s = 0;
+	else if (keysym == XK_Left)
+		cubed->key_left = 0;
+	else if (keysym == XK_Right)
+		cubed->key_right = 0;
 	return (0);
 }
 
