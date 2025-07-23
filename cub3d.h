@@ -27,6 +27,9 @@
 # define PI 3.14159265359
 # define SIZE 30
 # define POV PI/3
+# define MINIMAP_RANGE 4
+# define MINIMAP_X 4
+# define MINIMAP_Y 4
 
 typedef struct s_cube
 {
@@ -50,8 +53,13 @@ typedef struct s_cube
 	float	new_x;
 	float	new_y;
 	int		speed;
+	float	dir_x;
+	float	dir_y;
 	float	ray_y;
 	float	ray_x;
+	float	plane_x;
+	float	plane_y;
+	float	camera_x;
 	float	angle;
 	int		key_a;
 	int		key_w;
@@ -59,6 +67,13 @@ typedef struct s_cube
 	int		key_d;
 	int		key_left;
 	int		key_right;
+	void    *wall_texture;
+	char    *tex_data;
+	int     tex_width;       // ancho de la textura
+	int     tex_height;      // alto de la textura
+	int     tex_bpp;         // bits por pixel
+	int     tex_line_length; // cantidad de bytes por fila
+	int     tex_endian;
 }			t_cube;
 
 void put_pixel(int x, int y, int color, t_cube *cubed);

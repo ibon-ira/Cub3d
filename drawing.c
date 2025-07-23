@@ -37,7 +37,7 @@ void draw_line_on_map(float x0, float y0, float x1, float y1, t_cube *cubed)
 
     for (int i = 0; i <= steps; i++)
     {
-        put_pixel(x, y, 0xC37777, cubed); // Rojo para los rayos 0xFF0000
+        put_pixel(x, y, 0xC37777, cubed);
         x += x_inc;
         y += y_inc;
     }
@@ -104,6 +104,95 @@ void draw_map(t_cube *cubed)
         y++;
     }
 }
+
+/*void draw_map(t_cube *cubed)
+{
+    int y, x;
+
+    int map_height = 0;
+    while (cubed->map[map_height] != NULL)
+        map_height++;
+
+    int map_x = (int)(cubed->x / SIZE);
+    int map_y = (int)(cubed->y / SIZE);
+    int range = 4;
+
+    int start_y = map_y - range;
+    int end_y = map_y + range;
+
+    if (start_y < 0) start_y = 0;
+    if (end_y >= map_height) end_y = map_height - 1;
+
+    y = start_y;
+    while (y <= end_y)
+    {
+        int row_width = 0;
+        while (cubed->map[y][row_width] != '\0')
+            row_width++;
+
+        int start_x = map_x - range;
+        int end_x = map_x + range;
+        if (start_x < 0) start_x = 0;
+        if (end_x >= row_width) end_x = row_width - 1;
+
+        x = start_x;
+        while (x <= end_x)
+        {
+            if (cubed->map[y][x] == '1')
+                draw_square(x * SIZE, y * SIZE, 0x555555, cubed);
+            else
+                draw_square(x * SIZE, y * SIZE, 0xAAAAAA, cubed);
+            x++;
+        }
+        y++;
+    }
+}*/
+
+/*void draw_map(t_cube *cubed)
+{
+    int y, x;
+    int map_height = 0;
+    while (cubed->map[map_height] != NULL)
+        map_height++;
+
+    int map_x = (int)(cubed->x / SIZE);
+    int map_y = (int)(cubed->y / SIZE);
+
+    int start_y = map_y - MINIMAP_RANGE;
+    int end_y = map_y + MINIMAP_RANGE;
+
+    if (start_y < 0) start_y = 0;
+    if (end_y >= map_height) end_y = map_height - 1;
+
+    y = start_y;
+    while (y <= end_y)
+    {
+        int row_width = 0;
+        while (cubed->map[y][row_width] != '\0')
+            row_width++;
+
+        int start_x = map_x - MINIMAP_RANGE;
+        int end_x = map_x + MINIMAP_RANGE;
+        if (start_x < 0) start_x = 0;
+        if (end_x >= row_width) end_x = row_width - 1;
+
+        x = start_x;
+        while (x <= end_x)
+        {
+            // Aquí la clave: pintas en la ventana del minimapa,
+            // no en la posición del mapa absoluta, sino relativa
+            int screen_x = MINIMAP_X + (x - start_x) * SIZE;
+            int screen_y = MINIMAP_Y + (y - start_y) * SIZE;
+
+            if (cubed->map[y][x] == '1')
+                draw_square(screen_x, screen_y, 0x555555, cubed);
+            else
+                draw_square(screen_x, screen_y, 0xAAAAAA, cubed);
+            x++;
+        }
+        y++;
+    }
+}*/
 
 void put_circle(int xc, int yc, int r, int color, t_cube *cubed)
 {
